@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import { withAuth0 } from "@auth0/auth0-react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter,
+  BrowserRouter as Router,
+  Route,
+  Routes,
+} from "react-router-dom";
 import Header from "./Header";
 import Home from "./Home";
 import Profile from "./Profile";
@@ -8,17 +13,13 @@ import "./App.css";
 export class App extends Component {
   render() {
     return (
-      <Router>
+      <BrowserRouter>
         <Header />
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route exact path="/profile">
-            <Profile />
-          </Route>
-        </Switch>
-      </Router>
+        <Routes>
+          <Route index element={<Home />} />
+          <Route exact path="profile" element={<Profile />} />
+        </Routes>
+      </BrowserRouter>
     );
   }
 }
